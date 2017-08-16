@@ -169,9 +169,7 @@ mysql_select_db($database_dbConnect, $dbConnect);
 $query_Recordset1 = sprintf('SELECT * FROM siti INNER JOIN utenti ON siti.IDutente=utenti.ID WHERE utenti.USERNAME=%s', GetSQLValueString($MM_Username_Recordset1, 'int'));
 $Recordset1 = mysql_query($query_Recordset1, $dbConnect) ;
 if(!$Recordset1) {
- 
   trigger_error(mysql_error());
-
 } else {
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $colname_Recordset1 = '-1';
@@ -180,14 +178,13 @@ if (isset($_SESSION['MM_Username'])) {
 }
 mysql_select_db($database_dbConnect, $dbConnect);
 $query_Recordset1 = sprintf('SELECT * FROM siti WHERE IDutente = %s ORDER BY NOME ASC', GetSQLValueString($colname_Recordset1, 'int'));
+
 $Recordset1 = mysql_query($query_Recordset1, $dbConnect);
 if(!$Recordset1) {
- 
   trigger_error(mysql_error());
-
 } else {
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = '-1';
+$colname_Recordset1 = '-1';
 if(isset($_SESSION['MM_Username'])) {
 	$colname_Recordset1 = sprintf('MM_Username');
 }
@@ -195,9 +192,7 @@ mysql_select_db($database_dbConnect, $dbConnect);
 $query_Recordset1 = sprintf('SELECT siti.*,USERNAME FROM siti INNER JOIN utenti ON siti.IDutente=utenti.ID WHERE utenti.USERNAME = %s ORDER BY NOME ASC;', GetSQLValueString($totalRows_Recordset1, 'text',$dbConnect));
 $Recordset1 = mysql_query($query_Recordset1, $dbConnect) ;
 if(!$Recordset1) {
- 
   trigger_error(mysql_error());
-
 } else {
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
